@@ -20,9 +20,9 @@ It is tested with Jest Unit and API tests.
     cd graphql-server-example
     ```
 
-2. Install dependencies:
+2. Install dependencies (use --force to avoid upstream dep issues):
     ```sh
-    npm install
+    npm install --force
     ```
 
 ## Running the Server
