@@ -84,4 +84,4 @@ The MongoDB connection is handled in [data/db.js](data/db.js). The item model is
 Unit tests for the resolvers are located in [test/unit/resolvers.test.js](test/unit/resolvers.test.js). API tests are located in [test/api/graphql.test.js](test/api/graphql.test.js). Helper functions for testing are in [test/helpers/helpers.js](test/helpers/helpers.js).
 
 ## TODO
-- GitHub Actions for API and Unit tests
+- GitHub Actions for standing up the GQL server & DB and running API tests.
