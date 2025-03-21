@@ -8,7 +8,7 @@
     "monitor": "nodemon ./index.js --exec babel-node -e js",
     "test": "npx jest",
     "test:watch": "npx jest --watchAll",
-    "unittest": "npx jest --coverage --testPathPattern=test/unit",
+    "unittest": "npx jest --coverage --coverageReporters=json-summary --reporters=default --reporters=jest-junit --testPathPattern=test/unit",
     "apitest": "npx jest --testPathPattern=test/api"
   },
   "author": "",
@@ -28,6 +28,7 @@
     "@babel/preset-env": "^7.23.8",
     "graphql-tag": "^2.12.6",
     "jest": "^29.7.0",
+    "jest-junit": "^16.0.0",
     "mockingoose": "^2.16.2",
     "supertest": "^7.1.0"
   }

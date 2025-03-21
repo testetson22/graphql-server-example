@@ -20,11 +20,9 @@ jobs:
             run: npm install --force
           - name: Run unit tests
             run: npm run unittest
-          - name: Coverage report
-            uses: saschanowak/CloverCodeCoverageSummary@1.1.0
+          - name: Coverage Report
+            uses: MishaKav/jest-coverage-comment@main
             with:
-                filename: ./coverage/clover.xml
-          - name: 'Add Code Coverage to Job Summary'
-            run: |
-                cat code-coverage-summary.md >> $GITHUB_STEP_SUMMARY
-                cat code-coverage-details.md >> $GITHUB_STEP_SUMMARY
+              coverage-summary-path: ./coverage/coverage-summary.json
+              junitxml-path: ./junit.xml
+              github-token: ${{ secrets.GITHUB_TOKEN }}
