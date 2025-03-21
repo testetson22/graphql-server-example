@@ -21,7 +21,10 @@ jobs:
           - name: Run unit tests
             run: npm run unittest
           - name: Coverage report
-            uses: manarbenkraouda/lcov-reporter-action@v0.3.5.3
+            uses: saschanowak/CloverCodeCoverageSummary@1.1.0
             with:
-              github-token: ${{ secrets.GITHUB_TOKEN }}
-              lcov-file: ./coverage/lcov.info
+                filename: ./coverage/clover.xml
+          - name: 'Add Code Coverage to Job Summary'
+            run: |
+                cat code-coverage-summary.md >> $GITHUB_STEP_SUMMARY
+                cat code-coverage-details.md >> $GITHUB_STEP_SUMMARY
