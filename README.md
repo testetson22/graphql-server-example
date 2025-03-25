@@ -27,12 +27,31 @@ It is tested with Jest Unit and API tests.
 
 ## Running the Server
 
+### Via Docker
+To start the server using Docker, follow these steps:
+
+1. Optional: Build the GQL server:
+    ```sh
+    bash ./docker-build.sh
+    ```
+
+2. Run the GQL server and database:
+    ```sh
+    bash ./docker-run.sh
+    ```
+
+3. Optional: Stop and remove containers
+    ```sh
+    bash ./docker-stop-rm.sh
+    ```
+
+### Via npm
+NOTE: You need to have a MongoDB instance running.
+
 To start the server, run:
 ```sh
 npm start
 ```
-
-The server will be running on `http://localhost:8080/graphql` w/ a GraphiQL interface enabled.
 
 ## Running Tests
 
