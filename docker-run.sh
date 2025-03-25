@@ -40,12 +40,12 @@ gql_image_name="${gql_service_name}-${gql_service_version}"
 gql_container_name="graphql-server-example"
 if [ -z "$(docker images -q $gql_image_name 2> /dev/null)" ]; then
   bash ./docker-build.sh
-  docker run --network=bridge -p 8080:8080 -e LOCALHOST_DB=mongodb://$mongodb_ip/itemsdb --name $gql_container_name -d $gql_image_name
+  docker run --network=bridge -p 8080:8080 -e MONGODB_HOST=mongodb://$mongodb_ip --name $gql_container_name -d $gql_image_name
 else
     if [ "$(docker container inspect -f '{{.State.Status}}' $gql_container_name)" == "running" ]; then
         echo "The $gql_container_name container is running."
     else
-        docker run --network=bridge -p 8080:8080 -e LOCALHOST_DB=mongodb://$mongodb_ip/itemsdb --name graphql-server-example -d $gql_image_name
+        docker run --network=bridge -p 8080:8080 -e MONGODB_HOST=$mongodb_ip --name graphql-server-example -d $gql_image_name
   fi
 fi
 
