@@ -45,6 +45,11 @@ To start the server using Docker, follow these steps:
     bash ./docker-stop-rm.sh
     ```
 
+NOTE: You may see some docker daemon errors, but if you see the following you should be all set:
+```
+CONTAINER ID   IMAGE                                     COMMAND                  CREATED              STATUS              PORTS                      NAMES                                                                                  8c93c6a7a5be   graphql-server-example-1.0.0              "docker-entrypoint.s…"   About a minute ago   Up 59 seconds       0.0.0.0:8080->8080/tcp     graphql-server-example                                                                 6a60a39468b1   mongodb/mongodb-community-server:latest   "python3 /usr/local/…"   About a minute ago   Up About a minute   0.0.0.0:27017->27017/tcp   mongodb
+```
+
 ### Via npm
 NOTE: You need to have a MongoDB instance running.
 

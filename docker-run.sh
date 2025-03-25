@@ -48,3 +48,5 @@ else
         docker run --network=bridge -p 8080:8080 -e LOCALHOST_DB=mongodb://$mongodb_ip/itemsdb --name graphql-server-example -d $gql_image_name
   fi
 fi
+
+docker ps
