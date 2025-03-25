@@ -1,26 +1,26 @@
 #!/bin/bash
 # Start the MongoDB container
 mongodb_container_name="mongodb"
-if [ "$(docker container inspect -f '{{.State.Status}}' mongodb)" == "running" ]; then
+if [ "$(docker container inspect -f '{{.State.Status}}' $mongodb_container_name)" == "running" ]; then
     echo "The $mongodb_container_name container is running."
 else
     echo "The $mongodb_container_name container is not running."
-    inspect_mongo_init="$(docker container inspect -f '{{.State.Status}}' mongodb)"
+    inspect_mongo_init="$(docker container inspect -f '{{.State.Status}}' $mongodb_container_name)"
     case $inspect_mongo_init in
     "exited"|"created")
         echo "Container is in the exited or created state. Starting the container."
-        docker container start mongodb
+        docker container start $mongodb_container_name
         ;;
     *)
         echo "Container does not exist in the exited or created state. Creating a new container."
-        docker run --name mongodb -p 27017:27017 -d mongodb/mongodb-community-server:latest
+        docker run --name $mongodb_container_name -p 27017:27017 -d mongodb/mongodb-community-server:latest
         ;;
     esac
 fi
 
 # Wait for the MongoDB container to start
 counter=1
-until "$(docker container inspect -f {{.State.Running}} mongodb)" == "true"; do
+until "$(docker container inspect -f {{.State.Running}} $mongodb_container_name)" == "true"; do
     if [ $counter -gt 10 ]; then
         echo "MongoDB took took too long to start or failed to start"
         break
@@ -31,7 +31,7 @@ until "$(docker container inspect -f {{.State.Running}} mongodb)" == "true"; do
 done
 
 # Get the mongodb container IP for graphql server connections
-mongodb_ip=$(docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' mongodb)
+mongodb_ip=$(docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $mongodb_container_name)
 
 # Start the GraphQL server container
 gql_service_name=$(jq -r .name package.json)
