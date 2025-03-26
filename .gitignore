@@ -3,4 +3,5 @@ package-lock.json
 coverage
 junit.xml
 terraform/.terraform*
+*tfstate*
 *.pem

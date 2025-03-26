@@ -43,6 +43,7 @@ resource "aws_ecs_service" "graphql_server_service" {
         assign_public_ip = true
     }
     enable_ecs_managed_tags = true
+    wait_for_steady_state   = true
 }
 
 data "aws_network_interface" "interface_tags" {
